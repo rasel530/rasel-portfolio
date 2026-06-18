@@ -1,0 +1,31 @@
+# ===== Environment & Secrets =====
+.env
+.env.*
+!.env.example
+
+# ===== Application Key / Local Config =====
+bootstrap/cache/*.php
+!bootstrap/cache/.gitkeep
+
+# ===== Dependencies =====
+/vendor
+node_modules
+npm-debug.log
+yarn-error.log
+composer.phar
+composer.lock
+
+# ===== Laravel Storage (logs, sessions, cache, uploads) =====
+/storage/*
+!/storage/app/.gitkeep
+!/storage/framework/.gitkeep
+!/storage/logs/.gitkeep
+
+# ===== Build artifacts & editor files =====
+*.log
+.DS_Store
+Thumbs.db
+.idea
+.vscode
+*.swp
+*.swo
