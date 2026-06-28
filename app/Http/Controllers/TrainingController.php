@@ -32,7 +32,7 @@ class TrainingController extends Controller
         $validated = $request->validate([
             'title' => ['required', 'string', 'max:255'],
             'organization' => ['nullable', 'string', 'max:255'],
-            'description' => ['nullable', 'string', 'max:1000'],
+            'description' => ['nullable', 'string', 'max:2000'],
             'long_description' => ['nullable', 'string'],
             'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048'],
             'certificate_url' => ['nullable', 'url', 'max:255'],
@@ -68,7 +68,7 @@ class TrainingController extends Controller
         $validated = $request->validate([
             'title' => ['required', 'string', 'max:255'],
             'organization' => ['nullable', 'string', 'max:255'],
-            'description' => ['nullable', 'string', 'max:1000'],
+            'description' => ['nullable', 'string', 'max:2000'],
             'long_description' => ['nullable', 'string'],
             'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048'],
             'certificate_url' => ['nullable', 'url', 'max:255'],

@@ -64,7 +64,7 @@ class SiteSettingController extends Controller
             'admin_branding.mark' => ['nullable', 'string', 'max:10'],
             'admin_branding.panel_name' => ['nullable', 'string', 'max:100'],
             // Favicon
-            'favicon' => ['nullable', 'image', 'mimes:ico,png,jpg,jpeg,gif,webp,svg', 'max:512'],
+            'favicon' => ['nullable', 'image', 'mimes:ico,png,jpg,jpeg,gif,webp', 'max:512'],
             'remove_favicon' => ['nullable', 'boolean'],
             'default_theme' => ['nullable', 'string', 'in:light,dark,system'],
             // Footer

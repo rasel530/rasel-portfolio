@@ -20,7 +20,6 @@ class Message extends Model
         'subject',
         'message',
         'phone',
-        'is_read',
     ];
 
     /**

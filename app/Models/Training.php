@@ -14,7 +14,6 @@ class Training extends Model
 
     protected $fillable = [
         'title',
-        'slug',
         'organization',
         'description',
         'long_description',

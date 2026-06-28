@@ -52,7 +52,6 @@
                                 <th style="width:60px;">Order</th>
                                 <th>Position</th>
                                 <th>Company</th>
-                                <th>Address</th>
                                 <th>Period</th>
                                 <th>Status</th>
                                 <th class="col-actions">Actions</th>
@@ -63,8 +62,12 @@
                                 <tr>
                                     <td class="cell-muted">{{ $exp->sort_order }}</td>
                                     <td class="cell-strong">{{ $exp->position }}</td>
-                                    <td>{{ $exp->company }}</td>
-                                    <td class="cell-muted">{{ $exp->company_address ?: '—' }}</td>
+                                    <td>
+                                        {{ $exp->company }}
+                                        @if($exp->company_address)
+                                        <br><small style="opacity:0.65;font-size:0.85em;">{{ $exp->company_address }}</small>
+                                        @endif
+                                    </td>
                                     <td class="cell-muted">
                                         {{ $exp->start_date ? $exp->start_date->format('M Y') : '—' }}
                                         &rarr;
