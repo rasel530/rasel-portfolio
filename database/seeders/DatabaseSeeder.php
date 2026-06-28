@@ -109,6 +109,7 @@ class DatabaseSeeder extends Seeder
             [
                 'position' => 'Senior Full Stack Developer',
                 'company' => 'Tech Solutions Ltd.',
+                'company_address' => 'Dhaka, Bangladesh',
                 'description' => 'Leading a team of developers to build and maintain scalable web applications. Architected RESTful APIs, optimized database performance, and mentored junior developers while delivering high-quality software solutions.',
                 'start_date' => '2022-03-01',
                 'end_date' => null,
@@ -118,6 +119,7 @@ class DatabaseSeeder extends Seeder
             [
                 'position' => 'Software Developer',
                 'company' => 'Digital Innovation Inc.',
+                'company_address' => 'Chittagong, Bangladesh',
                 'description' => 'Developed and maintained multiple client web applications using Laravel and Vue.js. Collaborated with cross-functional teams to deliver projects on time and improve code quality through code reviews.',
                 'start_date' => '2020-06-01',
                 'end_date' => '2022-02-28',
@@ -127,6 +129,7 @@ class DatabaseSeeder extends Seeder
             [
                 'position' => 'Junior Web Developer',
                 'company' => 'WebCraft Agency',
+                'company_address' => 'Remote',
                 'description' => 'Built responsive websites and implemented UI designs. Gained hands-on experience with PHP, JavaScript, and modern frontend workflows while contributing to a variety of client projects.',
                 'start_date' => '2019-01-01',
                 'end_date' => '2020-05-31',
@@ -332,7 +335,7 @@ class DatabaseSeeder extends Seeder
                 'nav_cta_url' => '#contact',
                 'notification_email' => null,
                 'stats_items' => [
-                    ['value' => '{experience_count}', 'label' => 'Years Experience'],
+                    ['value' => '{experience_years}', 'label' => 'Years Experience'],
                     ['value' => '{project_count}', 'label' => 'Projects Completed'],
                     ['value' => '{skill_count}', 'label' => 'Technologies'],
                     ['value' => '50', 'label' => 'Happy Clients'],

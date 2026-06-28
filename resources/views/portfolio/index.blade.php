@@ -45,7 +45,7 @@
 
     // ---- Footer ----
     $footerNavItems = $settings ? $settings->footerNavItems() : [];
-    $footerAbout = $settings && $settings->footer_about ? $settings->footer_about : $profileSummary;
+    $footerAbout = $settings && $settings->footer_about ? $settings->footer_about : strip_tags($profileSummary);
     $footerSocials = $settings ? $settings->footerSocials() : [];
     $footerCopyright = $settings ? $settings->renderedCopyright($profileName) : '© ' . date('Y') . ' ' . $profileName;
 
@@ -182,7 +182,7 @@
         <div class="about-grid">
             <div class="about-text reveal">
                 @if(!empty($profileSummary))
-                <p>{{ $profileSummary }}</p>
+                <div class="about-text-content">{!! $profileSummary !!}</div>
                 @else
                 <p>{{ $sections['about']['empty'] ?? 'Passionate and detail-oriented developer dedicated to building clean, efficient, and user-friendly digital experiences.' }}</p>
                 @endif
@@ -309,8 +309,11 @@
                     <span class="timeline-date">{{ $startDate }} — {{ $endDate }}</span>
                     <h3 class="timeline-title">{{ $exp->position }}</h3>
                     <span class="timeline-org">{{ $exp->company }}</span>
+                    @if(!empty($exp->company_address))
+                    <span class="timeline-address">{{ $exp->company_address }}</span>
+                    @endif
                     @if(!empty($exp->description))
-                    <p class="timeline-desc">{{ $exp->description }}</p>
+                    <div class="timeline-desc rich-content">{!! $exp->description !!}</div>
                     @endif
                     @if($exp->is_current)
                     <span class="badge badge-current">{{ $labels['current'] ?? 'Current' }}</span>
@@ -351,7 +354,7 @@
                     <span class="badge badge-result">Result: {{ $edu->result }}</span>
                     @endif
                     @if(!empty($edu->description))
-                    <p class="timeline-desc">{{ $edu->description }}</p>
+                    <div class="timeline-desc rich-content">{!! $edu->description !!}</div>
                     @endif
                 </div>
             </div>
@@ -407,7 +410,7 @@
                 </div>
                 <div class="project-body">
                     <h3 class="project-title">{{ $project->title }}</h3>
-                    <p class="project-desc">{{ $project->description }}</p>
+                    <div class="project-desc rich-content">{!! $project->description !!}</div>
                     @if(!empty($techs))
                     <div class="project-techs">
                         @foreach($techs as $tech)
@@ -454,7 +457,7 @@
                     <span class="training-card__org">{{ $training->organization }}</span>
                     @endif
                     @if(!empty($training->description))
-                    <p class="training-card__desc">{{ $training->description }}</p>
+                    <div class="training-card__desc rich-content">{!! $training->description !!}</div>
                     @endif
                     <div class="training-card__footer">
                         <a href="{{ $training->publicUrl() }}" class="btn-text-link">View Details

@@ -40,9 +40,18 @@
                             @error('company') <span class="field__error">{{ $message }}</span> @enderror
                         </div>
 
+                        <div class="field field--full @error('company_address') has-error @enderror">
+                            <label class="field__label" for="company_address">Company Address</label>
+                            <input class="input" type="text" id="company_address" name="company_address"
+                                   value="{{ old('company_address', $experience->company_address) }}"
+                                   placeholder="e.g. Dhaka, Bangladesh">
+                            @error('company_address') <span class="field__error">{{ $message }}</span> @enderror
+                        </div>
+
                         <div class="field field--full @error('description') has-error @enderror">
                             <label class="field__label" for="description">Description</label>
-                            <textarea class="textarea" id="description" name="description" rows="5">{{ old('description', $experience->description) }}</textarea>
+                            <textarea class="textarea rich-text" id="description" name="description" rows="5">{{ old('description', $experience->description) }}</textarea>
+                            <span class="field__hint">Tip: select text to <strong>bold</strong> / <em>italicize</em>; use Enter for paragraphs and the toolbar for bullet or numbered lists.</span>
                             @error('description') <span class="field__error">{{ $message }}</span> @enderror
                         </div>
 
@@ -95,3 +104,5 @@
     </div>
 
 @endsection
+
+@include('admin.partials.rich-text')

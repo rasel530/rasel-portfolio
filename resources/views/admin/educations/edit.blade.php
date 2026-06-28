@@ -42,7 +42,7 @@
 
                         <div class="field field--full @error('description') has-error @enderror">
                             <label class="field__label" for="description">Description</label>
-                            <textarea class="textarea" id="description" name="description" rows="4">{{ old('description', $education->description) }}</textarea>
+                            <textarea class="textarea rich-text" id="description" name="description" rows="4">{{ old('description', $education->description) }}</textarea>
                             @error('description') <span class="field__error">{{ $message }}</span> @enderror
                         </div>
 
@@ -105,6 +105,8 @@
     </div>
 
 @endsection
+
+@include('admin.partials.rich-text')
 
 @push('scripts')
     <script>

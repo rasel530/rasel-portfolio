@@ -108,7 +108,7 @@
                     <div class="field field--full">
                         <span class="field__hint">
                             <strong>Value</strong> can be a number (e.g. <code>50</code>) or a dynamic counter:
-                            <code>{experience_count}</code>, <code>{project_count}</code>, <code>{skill_count}</code>.
+                            <code>{experience_years}</code>, <code>{experience_count}</code>, <code>{project_count}</code>, <code>{skill_count}</code>.
                             Blank rows are ignored.
                         </span>
 
@@ -117,7 +117,7 @@
                                 $statItems = old('stats_items') ?: (is_array($settings->stats_items) ? $settings->stats_items : []);
                                 if (empty($statItems)) {
                                     $statItems = [
-                                        ['value' => '{experience_count}', 'label' => 'Years Experience'],
+                                        ['value' => '{experience_years}', 'label' => 'Years Experience'],
                                         ['value' => '{project_count}', 'label' => 'Projects Completed'],
                                         ['value' => '{skill_count}', 'label' => 'Technologies'],
                                     ];

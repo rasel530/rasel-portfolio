@@ -47,9 +47,9 @@
 
         <div class="training-detail__content">
             @if(!empty($training->long_description))
-                {!! nl2br(e($training->long_description)) !!}
+                <div class="rich-content">{!! $training->long_description !!}</div>
             @elseif(!empty($training->description))
-                <p>{{ $training->description }}</p>
+                <div class="rich-content">{!! $training->description !!}</div>
             @else
                 <p>No additional details available.</p>
             @endif

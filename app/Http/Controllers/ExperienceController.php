@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Experience;
+use App\Support\HtmlSanitizer;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -39,6 +40,7 @@ class ExperienceController extends Controller
         $validated = $request->validate([
             'position' => ['required', 'string', 'max:255'],
             'company' => ['required', 'string', 'max:255'],
+            'company_address' => ['nullable', 'string', 'max:255'],
             'start_date' => ['required', 'date'],
             'end_date' => ['nullable', 'date', 'after_or_equal:start_date'],
             'is_current' => ['sometimes', 'boolean'],
@@ -51,6 +53,10 @@ class ExperienceController extends Controller
         // A current role cannot have an end date.
         if ($validated['is_current']) {
             $validated['end_date'] = null;
+        }
+
+        if (isset($validated['description'])) {
+            $validated['description'] = (new HtmlSanitizer())->clean($validated['description']);
         }
 
         Experience::create($validated);
@@ -76,6 +82,7 @@ class ExperienceController extends Controller
         $validated = $request->validate([
             'position' => ['required', 'string', 'max:255'],
             'company' => ['required', 'string', 'max:255'],
+            'company_address' => ['nullable', 'string', 'max:255'],
             'start_date' => ['required', 'date'],
             'end_date' => ['nullable', 'date', 'after_or_equal:start_date'],
             'is_current' => ['sometimes', 'boolean'],
@@ -87,6 +94,10 @@ class ExperienceController extends Controller
 
         if ($validated['is_current']) {
             $validated['end_date'] = null;
+        }
+
+        if (isset($validated['description'])) {
+            $validated['description'] = (new HtmlSanitizer())->clean($validated['description']);
         }
 
         $experience->update($validated);

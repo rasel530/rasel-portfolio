@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Profile;
+use App\Support\HtmlSanitizer;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -113,13 +114,26 @@ class ProfileController extends Controller
             if ($profile->resume_url) {
                 Storage::disk('public')->delete($profile->resume_url);
             }
+
             $validated['resume_url'] = $this->storeWithOriginalName($request->file('resume_file'), 'resume');
         } elseif ($request->boolean('remove_resume') && $profile->resume_url) {
             Storage::disk('public')->delete($profile->resume_url);
             $validated['resume_url'] = null;
+        } elseif (! empty($validated['resume_url'])) {
+            if ($profile->resume_url && ! filter_var($profile->resume_url, FILTER_VALIDATE_URL)) {
+                Storage::disk('public')->delete($profile->resume_url);
+            }
+        } else {
+            unset($validated['resume_url']);
         }
 
         unset($validated['remove_photo'], $validated['remove_logo'], $validated['remove_logo_dark'], $validated['remove_resume'], $validated['resume_file']);
+
+        // The summary is rendered as raw HTML on the public site, so it
+        // must be whitelisted before storage to prevent stored XSS.
+        if (array_key_exists('summary', $validated)) {
+            $validated['summary'] = (new HtmlSanitizer())->clean($validated['summary']);
+        }
 
         $profile->update($validated);
 

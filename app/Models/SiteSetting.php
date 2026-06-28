@@ -361,6 +361,7 @@ class SiteSetting extends Model
     private function resolveStatValue(string $raw): ?int
     {
         return match ($raw) {
+            '{experience_years}' => Experience::totalExperience()['years'],
             '{experience_count}' => Experience::count(),
             '{project_count}' => Project::count(),
             '{skill_count}' => Skill::count(),

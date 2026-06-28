@@ -186,8 +186,9 @@
 
                         <div class="field field--full @error('summary') has-error @enderror">
                             <label class="field__label" for="summary">Summary / About Me</label>
-                            <textarea class="textarea" id="summary" name="summary" rows="6"
+                            <textarea class="textarea rich-text" id="summary" name="summary" rows="10"
                                       placeholder="Write a few sentences about yourself, your background and your goals.">{{ old('summary', $profile->summary) }}</textarea>
+                            <span class="field__hint">Tip: select text to <strong>bold</strong> or <em>italicize</em> it; press Enter to start a new paragraph.</span>
                             @error('summary') <span class="field__error">{{ $message }}</span> @enderror
                         </div>
 
@@ -264,7 +265,7 @@
                         <div class="field field--full @error('resume_url') has-error @enderror">
                             <label class="field__label" for="resume_url">Resume / CV URL</label>
                             <input class="input" type="url" id="resume_url" name="resume_url"
-                                   value="{{ old('resume_url', $profile->resume_url) }}"
+                                   value="{{ old('resume_url', filter_var($profile->resume_url, FILTER_VALIDATE_URL) ? $profile->resume_url : '') }}"
                                    placeholder="https://example.com/resume.pdf">
                             <span class="field__hint">External link. Leave blank if uploading a file below.</span>
                             @error('resume_url') <span class="field__error">{{ $message }}</span> @enderror
@@ -310,6 +311,8 @@
     </div>
 
 @endsection
+
+@include('admin.partials.rich-text')
 
 @push('scripts')
 <script>

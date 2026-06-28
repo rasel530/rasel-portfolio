@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Support\HtmlSanitizer;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -52,6 +53,10 @@ class ProjectController extends Controller
 
         $validated['is_featured'] = $request->boolean('is_featured');
 
+        if (isset($validated['description'])) {
+            $validated['description'] = (new HtmlSanitizer())->clean($validated['description']);
+        }
+
         Project::create($validated);
 
         return redirect()
@@ -100,6 +105,10 @@ class ProjectController extends Controller
         }
 
         $validated['is_featured'] = $request->boolean('is_featured');
+
+        if (isset($validated['description'])) {
+            $validated['description'] = (new HtmlSanitizer())->clean($validated['description']);
+        }
 
         $project->update($validated);
 

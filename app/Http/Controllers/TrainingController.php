@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Training;
+use App\Support\HtmlSanitizer;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -48,6 +49,8 @@ class TrainingController extends Controller
 
         $validated['is_featured'] = $request->boolean('is_featured');
 
+        $validated = $this->sanitizeTrainingText($validated);
+
         Training::create($validated);
 
         return redirect()
@@ -84,6 +87,8 @@ class TrainingController extends Controller
         }
 
         $validated['is_featured'] = $request->boolean('is_featured');
+
+        $validated = $this->sanitizeTrainingText($validated);
 
         $training->update($validated);
 
@@ -122,5 +127,21 @@ class TrainingController extends Controller
         $siteSetting = \App\Models\SiteSetting::first();
 
         return view('portfolio.training-detail', compact('training', 'related', 'profile', 'siteSetting'));
+    }
+
+    /**
+     * Sanitize the rich-text fields rendered raw on the public site.
+     */
+    private function sanitizeTrainingText(array $validated): array
+    {
+        $sanitizer = new HtmlSanitizer();
+
+        foreach (['description', 'long_description'] as $field) {
+            if (isset($validated[$field])) {
+                $validated[$field] = $sanitizer->clean($validated[$field]);
+            }
+        }
+
+        return $validated;
     }
 }

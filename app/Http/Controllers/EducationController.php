@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Education;
+use App\Support\HtmlSanitizer;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -51,6 +52,10 @@ class EducationController extends Controller
             $validated['end_year'] = null;
         }
 
+        if (isset($validated['description'])) {
+            $validated['description'] = (new HtmlSanitizer())->clean($validated['description']);
+        }
+
         Education::create($validated);
 
         return redirect()
@@ -86,6 +91,10 @@ class EducationController extends Controller
 
         if ($validated['is_current']) {
             $validated['end_year'] = null;
+        }
+
+        if (isset($validated['description'])) {
+            $validated['description'] = (new HtmlSanitizer())->clean($validated['description']);
         }
 
         $education->update($validated);

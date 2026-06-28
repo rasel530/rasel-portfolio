@@ -73,14 +73,13 @@
 
                         <div class="field field--full @error('description') has-error @enderror">
                             <label class="field__label" for="description">Short Description</label>
-                            <textarea class="textarea" id="description" name="description" rows="3">{{ old('description', $training->description) }}</textarea>
+                            <textarea class="textarea rich-text" id="description" name="description" rows="3">{{ old('description', $training->description) }}</textarea>
                             @error('description') <span class="field__error">{{ $message }}</span> @enderror
                         </div>
 
                         <div class="field field--full @error('long_description') has-error @enderror">
                             <label class="field__label" for="long_description">Full Description (Detail Page)</label>
-                            <textarea class="textarea" id="long_description" name="long_description" rows="6">{{ old('long_description', $training->long_description) }}</textarea>
-                            <span class="field__hint">Line breaks are preserved.</span>
+                            <textarea class="textarea rich-text" id="long_description" name="long_description" rows="6">{{ old('long_description', $training->long_description) }}</textarea>
                             @error('long_description') <span class="field__error">{{ $message }}</span> @enderror
                         </div>
 
@@ -137,3 +136,5 @@
     </div>
 
 @endsection
+
+@include('admin.partials.rich-text')

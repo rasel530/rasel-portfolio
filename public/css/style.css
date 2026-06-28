@@ -826,6 +826,98 @@ button {
     text-align: justify;
 }
 
+/* Rich-text About content (bold, italics, multiple paragraphs) */
+.about-text-content {
+    font-size: 17px;
+    color: var(--text-muted);
+    line-height: 1.9;
+    text-align: justify;
+}
+
+.about-text-content p {
+    margin: 0 0 1em;
+}
+
+.about-text-content p:last-child {
+    margin-bottom: 0;
+}
+
+.about-text-content strong,
+.about-text-content b {
+    color: var(--text);
+    font-weight: 700;
+}
+
+.about-text-content em,
+.about-text-content i {
+    font-style: italic;
+}
+
+.about-text-content ul {
+    list-style: disc;
+}
+
+.about-text-content ol {
+    list-style: decimal;
+}
+
+.about-text-content ul,
+.about-text-content ol {
+    margin: 0 0 1em;
+    padding-left: 1.5em;
+}
+
+.about-text-content ul:last-child,
+.about-text-content ol:last-child {
+    margin-bottom: 0;
+}
+
+/* Shared rich-text content (experience, education, project, training) */
+.rich-content p {
+    margin: 0 0 0.6em;
+}
+
+.rich-content p:last-child {
+    margin-bottom: 0;
+}
+
+.rich-content strong,
+.rich-content b {
+    font-weight: 700;
+}
+
+.rich-content em,
+.rich-content i {
+    font-style: italic;
+}
+
+.rich-content ul {
+    list-style: disc;
+}
+
+.rich-content ol {
+    list-style: decimal;
+}
+
+.rich-content ul,
+.rich-content ol {
+    margin: 0 0 0.6em;
+    padding-left: 1.5em;
+}
+
+.rich-content ul:last-child,
+.rich-content ol:last-child {
+    margin-bottom: 0;
+}
+
+.rich-content li {
+    margin-bottom: 0.3em;
+}
+
+.rich-content li:last-child {
+    margin-bottom: 0;
+}
+
 .about-info-card {
     background: var(--gradient-dark);
     border-radius: var(--radius-lg);
@@ -1104,6 +1196,19 @@ button {
     color: var(--accent);
     font-size: 15px;
     margin-bottom: 12px;
+}
+
+.timeline-address {
+    display: block;
+    font-size: 0.8em;
+    opacity: 0.75;
+    margin: 0;
+}
+
+/* When an address sits right under the company name, close the gap
+   that .timeline-org's margin-bottom would otherwise create. */
+.timeline-org:has(+ .timeline-address) {
+    margin-bottom: 0;
 }
 
 .timeline-desc {
